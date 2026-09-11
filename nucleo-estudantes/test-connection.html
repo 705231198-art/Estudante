@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Conexão</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #999;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0056a9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: monospace;
+        }
+        .info-box.error {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+            color: #991b1b;
+        }
+        .info-box.success {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+            color: #166534;
+        }
+        .info-box.warning {
+            background: #fffbeb;
+            border-left-color: #f59e0b;
+            color: #92400e;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .url-list {
+            list-style: none;
+        }
+        .url-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f9f9f9;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #ddd;
+        }
+        .url-list li:hover {
+            background: #f0f0f0;
+            border-color: #667eea;
+        }
+        .url-list li.testing {
+            background: #fff3cd;
+            border-color: #f59e0b;
+        }
+        .url-list li.success {
+            background: #d4edda;
+            border-color: #22c55e;
+        }
+        .url-list li.error {
+            background: #f8d7da;
+            border-color: #ef4444;
+        }
+        .url-list li code {
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Teste de Conexão</h1>
+        <p class="subtitle">Verificando acesso à API</p>
+        
+        <div class="section">
+            <div class="section-title">ℹ️ Informações da Página</div>
+            <div class="info-box">
+                <div><strong>Protocolo:</strong> <span id="protocol"></span></div>
+                <div><strong>Host:</strong> <span id="host"></span></div>
+                <div><strong>URL Completa:</strong> <span id="fullUrl"></span></div>
+                <div><strong>Pathname:</strong> <span id="pathname"></span></div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">🧪 Urls a Testar</div>
+            <ul class="url-list" id="urlList"></ul>
+            <button onclick="testarTodasUrls()">Testar Todas</button>
+        </div>
+        
+        <div class="section" id="resultadoSection" style="display: none;">
+            <div class="section-title">📋 Resultado</div>
+            <div id="resultado"></div>
+        </div>
+        
+        <div class="footer">
+            <p>💡 Clique em qualquer URL para testar, ou use "Testar Todas" para testar automaticamente.</p>
+            <p>Use este teste para encontrar a URL correta da sua API.</p>
+        </div>
+    </div>
+
+    <script>
+        // Preencher informações da página
+        document.getElementById('protocol').textContent = window.location.protocol;
+        document.getElementById('host').textContent = window.location.host;
+        document.getElementById('fullUrl').textContent = window.location.href;
+        document.getElementById('pathname').textContent = window.location.pathname;
+        
+        // Gerar lista de URLs possíveis
+        const urlsPossiveis = [];
+        const baseDir = window.location.pathname;
+        
+        // 1. URL relativa simples
+        urlsPossiveis.push({
+            nome: 'Relativa',
+            url: 'api/index.php',
+            descricao: 'URL relativa simples'
+        });
+        
+        // 2. URL com diretório atual
+        const currentDir = baseDir.split('/').slice(0, -1).join('/');
+        urlsPossiveis.push({
+            nome: 'Diretório Atual',
+            url: currentDir + '/api/index.php',
+            descricao: 'Baseado no diretório atual'
+        });
+        
+        // 3. URL absoluta
+        urlsPossiveis.push({
+            nome: 'Absoluta',
+            url: window.location.origin + currentDir + '/api/index.php',
+            descricao: 'URL absoluta completa'
+        });
+        
+        // 4. Raiz do site
+        const parts = baseDir.split('/').filter(p => p);
+        if (parts.length > 1) {
+            urlsPossiveis.push({
+                nome: 'Pasta Pai',
+                url: '/' + parts[0] + '/api/index.php',
+                descricao: 'Assumindo Site como raiz'
+            });
+        }
+        
+        // 5. Diretório específico
+        urlsPossiveis.push({
+            nome: 'Específica',
+            url: '/nucleo-estudantes/api/index.php',
+            descricao: 'Path fixo para nucleo-estudantes'
+        });
+        
+        // Renderizar lista
+        const urlList = document.getElementById('urlList');
+        urlsPossiveis.forEach((item, i) => {
+            const li = document.createElement('li');
+            li.setAttribute('data-index', i);
+            li.innerHTML = `<strong>${item.nome}:</strong><br><code>${item.url}</code><br><small>${item.descricao}</small>`;
+            li.onclick = () => testarUrl(i);
+            urlList.appendChild(li);
+        });
+        
+        async function testarUrl(index) {
+            const item = urlsPossiveis[index];
+            const li = document.querySelectorAll('.url-list li')[index];
+            
+            li.className = 'testing';
+            li.innerHTML += '<div style="margin-top: 10px; font-size: 11px;">⏳ Testando...</div>';
+            
+            try {
+                const fullUrl = item.url.startsWith('http') 
+                    ? item.url 
+                    : window.location.origin + item.url;
+                
+                console.log(`Testando: ${fullUrl}`);
+                
+                const response = await fetch(item.url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        endpoint: 'test'
+                    }),
+                    timeout: 5000
+                });
+                
+                const text = await response.text();
+                
+                li.className = response.ok ? 'success' : 'error';
+                li.innerHTML += `<div style="margin-top: 10px; font-size: 11px;">
+                    <strong>Status: ${response.status}</strong><br>
+                    Resposta: ${text.substring(0, 50)}...
+                </div>`;
+                
+                mostrarResultado(`
+                    <div class="info-box success">
+                        ✓ <strong>Sucesso!</strong><br><br>
+                        URL funcionando: <code>${fullUrl}</code><br>
+                        Status: ${response.status}<br>
+                        Tipo: ${response.headers.get('content-type')}<br><br>
+                        <strong>Use esta URL no seu código!</strong>
+                    </div>
+                `);
+                
+            } catch (error) {
+                li.className = 'error';
+                li.innerHTML += `<div style="margin-top: 10px; font-size: 11px; color: red;">
+                    ✗ ${error.message}
+                </div>`;
+                
+                mostrarResultado(`
+                    <div class="info-box error">
+                        ✗ <strong>Erro</strong><br><br>
+                        URL: <code>${item.url}</code><br>
+                        Erro: ${error.message}
+                    </div>
+                `);
+            }
+        }
+        
+        async function testarTodasUrls() {
+            document.getElementById('resultadoSection').style.display = 'none';
+            
+            for (let i = 0; i < urlsPossiveis.length; i++) {
+                await new Promise(resolve => setTimeout(resolve, 500));
+                await testarUrl(i);
+                
+                // Se encontrou uma que funciona, parar
+                if (document.querySelectorAll('.url-list li.success').length > 0) {
+                    break;
+                }
+            }
+        }
+        
+        function mostrarResultado(html) {
+            document.getElementById('resultadoSection').style.display = 'block';
+            document.getElementById('resultado').innerHTML = html;
+        }
+
+        // Testar automaticamente ao carregar
+        window.addEventListener('load', function() {
+            console.log('Página carregada. Testando URLs...');
+            setTimeout(testarTodasUrls, 300);
+        });
+    </script>
+</body>
+</html>

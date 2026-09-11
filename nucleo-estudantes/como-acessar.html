@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Acessar Corretamente</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .icon {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .status-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 6px;
+        }
+        .status-box.success {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+        .status-box h2 {
+            color: #991b1b;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .status-box.success h2 {
+            color: #166534;
+        }
+        .status-box p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .code-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+        .url-current {
+            background: #f0f9ff;
+            border-left: 4px solid #0056a9;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 12px;
+            word-break: break-all;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            width: 100%;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        .steps {
+            margin-top: 30px;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+        .step h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .step p {
+            color: #666;
+            font-size: 13px;
+            margin: 5px 0;
+        }
+        .step code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon" id="icon">⚠️</div>
+        <h1>Como Acessar o Site</h1>
+        
+        <div class="url-current">
+            <strong>URL Atual:</strong> <span id="currentUrl"></span>
+        </div>
+        
+        <div class="status-box" id="statusBox">
+            <h2 id="statusTitle">❌ Acesso Incorreto</h2>
+            <p id="statusMsg"></p>
+        </div>
+        
+        <div class="steps">
+            <div class="step">
+                <h3>1️⃣ Abra um servidor local</h3>
+                <p><strong>Opção A - XAMPP (Recomendado):</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Baixe XAMPP em xampp.de</li>
+                    <li>Instale e abra XAMPP Control Panel</li>
+                    <li>Clique "Start" em Apache</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>Opção B - PHP Embutido:</strong></p>
+                <div class="code-box">
+cd C:\Site\nucleo-estudantes\nucleo-estudantes
+php -S localhost:8000
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3>2️⃣ Acesse via HTTP (não file://)</h3>
+                <p><strong>Correto:</strong></p>
+                <div class="code-box">
+http://localhost/nucleo-estudantes/login.html
+ou
+http://localhost:8000/login.html
+                </div>
+                <p style="margin-top: 10px;"><strong>Incorreto (não funciona):</strong></p>
+                <div class="code-box">
+file:///C:/Site/nucleo-estudantes/login.html  ❌
+                </div>
+            </div>
+            
+            <div class="step">
+                <h3>3️⃣ Abra este arquivo corretamente</h3>
+                <p>Clique no botão abaixo para saber a URL certa:</p>
+            </div>
+        </div>
+        
+        <button onclick="redirecionarParaLogin()">
+            ✓ Ir para Login Correto
+        </button>
+    </div>
+
+    <script>
+        // Mostrar URL atual
+        document.getElementById('currentUrl').textContent = window.location.href;
+        
+        const protocol = window.location.protocol;
+        const host = window.location.host;
+        const pathname = window.location.pathname;
+        
+        // Verificar se está usando file://
+        if (protocol === 'file:') {
+            document.getElementById('icon').textContent = '❌';
+            document.getElementById('statusTitle').textContent = '❌ Usando file:// (Local)';
+            document.getElementById('statusMsg').innerHTML = `
+                <strong>Problema:</strong> Você está abrindo o arquivo localmente (file://)<br><br>
+                Isto <strong>não funciona</strong> porque o JavaScript não pode fazer requisições HTTP para localhost.<br><br>
+                <strong>Solução:</strong> Use um servidor web local como XAMPP ou execute:
+                <div class="code-box" style="margin: 10px 0;">
+php -S localhost:8000
+                </div>
+                Depois acesse: <code>http://localhost:8000</code>
+            `;
+        } else {
+            document.getElementById('icon').textContent = '✓';
+            document.getElementById('statusBox').classList.add('success');
+            document.getElementById('statusTitle').textContent = '✓ Acesso Correto!';
+            document.getElementById('statusMsg').innerHTML = `
+                Você está acessando via HTTP. Isso é correto!<br><br>
+                <strong>URL Base:</strong> <code>${window.location.origin}</code>
+            `;
+        }
+        
+        function redirecionarParaLogin() {
+            if (protocol === 'file:') {
+                alert('⚠️ Abra um terminal e execute:\n\ncd C:\\Site\\nucleo-estudantes\\nucleo-estudantes\nphp -S localhost:8000\n\nDepois acesse: http://localhost:8000');
+            } else {
+                // Ir para login
+                const baseDir = pathname.split('/').slice(0, -1).join('/');
+                window.location.href = baseDir + '/login.html';
+            }
+        }
+    </script>
+</body>
+</html>

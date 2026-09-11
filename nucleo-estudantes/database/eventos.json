@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "nome": "Seminário de Desenvolvimento Web",
+        "descricao": "Aprenda as melhores práticas em desenvolvimento web moderno com HTML5, CSS3 e JavaScript. Instrutor: João Silva",
+        "tipo": "academico",
+        "data_inicio": "2026-03-05T10:00:00",
+        "data_fim": "2026-03-05T12:00:00",
+        "local": "Sala de Conferências A",
+        "campus": "Maputo",
+        "responsavel_id": 1
+    },
+    {
+        "id": 2,
+        "nome": "Encontro Cultural e Musical",
+        "descricao": "Venha aproveitar uma noite de música ao vivo, dança, comida tradicional e oportunidade de conhecer novos membros da comunidade!",
+        "tipo": "cultural",
+        "data_inicio": "2026-03-10T18:00:00",
+        "data_fim": "2026-03-10T23:00:00",
+        "local": "Auditório Principal",
+        "campus": "Maputo",
+        "responsavel_id": 2
+    },
+    {
+        "id": 3,
+        "nome": "Torneio de Futebol",
+        "descricao": "Participe do torneio de futebol entre campi. Inscrições de times abertas até 25 de fevereiro.",
+        "tipo": "desportivo",
+        "data_inicio": "2026-03-15T08:00:00",
+        "data_fim": "2026-03-15T17:00:00",
+        "local": "Estádio UCM",
+        "campus": "Maputo",
+        "responsavel_id": 3
+    },
+    {
+        "id": 4,
+        "nome": "Workshop de Liderança",
+        "descricao": "Desenvolvimento de habilidades de liderança. Desenvolva sua capacidade de liderança com experts em gestão e desenvolvimento pessoal.",
+        "tipo": "formacao",
+        "data_inicio": "2026-03-08T14:00:00",
+        "data_fim": "2026-03-08T17:00:00",
+        "local": "Sala de Treinamento",
+        "campus": "Beira",
+        "responsavel_id": 1
+    },
+    {
+        "id": 5,
+        "nome": "Noite de Pizza entre Amigos",
+        "descricao": "Uma noite casual para os membros se conhecerem melhor, com pizza, bebidas e muita diversão!",
+        "tipo": "social",
+        "data_inicio": "2026-03-12T19:00:00",
+        "data_fim": "2026-03-12T22:00:00",
+        "local": "Centro Estudantil",
+        "campus": "Maputo",
+        "responsavel_id": 2
+    },
+    {
+        "id": 6,
+        "nome": "Hackathon de Inovação",
+        "descricao": "24 horas de programação intensiva! Forme sua equipe e crie a próxima grande ideia. Prêmios interessantes para vencedores.",
+        "tipo": "academico",
+        "data_inicio": "2026-03-22T08:00:00",
+        "data_fim": "2026-03-23T08:00:00",
+        "local": "Lab de Computadores",
+        "campus": "Nampula",
+        "responsavel_id": 3
+    }
+]

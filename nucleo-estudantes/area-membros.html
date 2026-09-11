@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Membros - Núcleo UCM</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/membros.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logos/logo-ucm.png">
+</head>
+<body>
+    <!-- Header Especial -->
+    <header class="membros-header">
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <div class="logo-membros">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Área de Membros</h1>
+                        <p>Núcleo dos Estudantes UCM</p>
+                    </div>
+                </div>
+                
+                <div class="user-menu">
+                    <div class="user-dropdown">
+                        <button class="user-toggle" id="userToggle">
+                            <div class="user-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span id="userName">Carregando...</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#perfil"><i class="fas fa-user-circle"></i> Meu Perfil</a>
+                            <a href="#configuracoes"><i class="fas fa-cog"></i> Configurações</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Container Principal -->
+    <div class="membros-container">
+        <aside class="membros-sidebar">
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                
+                <div class="nav-section">
+                    <h4>MINHA CONTA</h4>
+                    <a href="#perfil" class="nav-link" data-section="perfil">
+                        <i class="fas fa-user"></i>
+                        <span>Meu Perfil</span>
+                    </a>
+                    <a href="#notificacoes" class="nav-link" data-section="notificacoes">
+                        <i class="fas fa-bell"></i>
+                        <span>Notificações</span>
+                        <span class="badge" id="notificationBadge">3</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>EVENTOS</h4>
+                    <a href="#eventos" class="nav-link" data-section="eventos">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Eventos</span>
+                    </a>
+                    <a href="#minhas-inscricoes" class="nav-link" data-section="minhas-inscricoes">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Minhas Inscrições</span>
+                        <span class="badge" id="inscricoesBadge">2</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>CONTEÚDO</h4>
+                    <a href="#noticias" class="nav-link" data-section="noticias">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Notícias</span>
+                    </a>
+                    <a href="#galeria" class="nav-link" data-section="galeria">
+                        <i class="fas fa-images"></i>
+                        <span>Galeria</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <h4>ADMINISTRAÇÃO</h4>
+                    <a href="#membros" class="nav-link" data-section="membros">
+                        <i class="fas fa-users"></i>
+                        <span>Membros</span>
+                    </a>
+                    <a href="#configuracoes" class="nav-link" data-section="configuracoes">
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <div class="status-dot online"></div>
+                    <span id="statusText">Online</span>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Conteúdo Principal -->
+        <main class="membros-main">
+            
+            <!-- ===== DASHBOARD ===== -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h2>Dashboard</h2>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" id="refreshBtn">
+                            <i class="fas fa-sync-alt"></i> Atualizar
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Estatísticas -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon member">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="stat-membros">24</h3>
+                            <p>Membros Ativos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon event">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="stat-eventos">8</h3>
+                            <p>Eventos em Andamento</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon news">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="stat-noticias">12</h3>
+                            <p>Notícias Recentes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon gallery">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="stat-fotos">45</h3>
+                            <p>Fotos na Galeria</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grid de Painéis -->
+                <div class="dashboard-grid">
+                    <!-- Próximos Eventos -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-day"></i> Próximos Eventos</h3>
+                            <a href="#eventos" class="view-all">Ver todos</a>
+                        </div>
+                        <div class="events-list" id="upcomingEventsList">
+                            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando...</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Últimas Notícias -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-newspaper"></i> Últimas Notícias</h3>
+                            <a href="#noticias" class="view-all">Ver todas</a>
+                        </div>
+                        <div class="news-list" id="latestNewsList">
+                            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando...</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Minhas Inscrições -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-check"></i> Minhas Inscrições</h3>
+                            <a href="#minhas-inscricoes" class="view-all">Ver mais</a>
+                        </div>
+                        <div class="inscricoes-list" id="myInscricoesList">
+                            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== PERFIL ===== -->
+            <section id="perfil" class="content-section">
+                <div class="section-header">
+                    <h2>Meu Perfil</h2>
+                </div>
+                
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="profileName">-</h3>
+                            <p id="profileEmail">-</p>
+                            <p id="profileCampus">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-content">
+                        <div class="profile-card">
+                            <h4>Informações Pessoais</h4>
+                            <div class="profile-grid">
+                                <div class="profile-item">
+                                    <label>Nome Completo:</label>
+                                    <p id="profNome">-</p>
+                                </div>
+                                <div class="profile-item">
+                                    <label>Código de Estudante:</label>
+                                    <p id="profCodigo">-</p>
+                                </div>
+                                <div class="profile-item">
+                                    <label>Email Institucional:</label>
+                                    <p id="profEmail">-</p>
+                                </div>
+                                <div class="profile-item">
+                                    <label>Campus:</label>
+                                    <p id="profCampus2">-</p>
+                                </div>
+                                <div class="profile-item">
+                                    <label>Curso:</label>
+                                    <p id="profCurso">-</p>
+                                </div>
+                                <div class="profile-item">
+                                    <label>Ano de Estudo:</label>
+                                    <p id="profAno">-</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-actions">
+                            <button class="btn btn-primary" id="editProfileBtn">
+                                <i class="fas fa-edit"></i> Editar Perfil
+                            </button>
+                            <button class="btn btn-secondary" id="changePasswordBtn">
+                                <i class="fas fa-key"></i> Alterar Senha
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== EVENTOS ===== -->
+            <section id="eventos" class="content-section">
+                <div class="section-header">
+                    <h2>Eventos</h2>
+                </div>
+                
+                <div class="events-filters">
+                    <input type="search" id="eventSearch" placeholder="Buscar eventos...">
+                    <select id="eventTypeFilter">
+                        <option value="">Tipo de Evento</option>
+                        <option value="academico">Académico</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="desportivo">Desportivo</option>
+                        <option value="social">Social</option>
+                    </select>
+                    <select id="campusFilter">
+                        <option value="">Todos os Campus</option>
+                        <option value="Maputo">Maputo</option>
+                        <option value="Beira">Beira</option>
+                        <option value="Nampula">Nampula</option>
+                    </select>
+                </div>
+                
+                <div class="events-container" id="eventsContainer">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando eventos...</div>
+                </div>
+            </section>
+
+            <!-- ===== MINHAS INSCRIÇÕES ===== -->
+            <section id="minhas-inscricoes" class="content-section">
+                <div class="section-header">
+                    <h2>Minhas Inscrições</h2>
+                </div>
+                
+                <div class="inscricoes-container" id="minhasInscricoes">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando inscrições...</div>
+                </div>
+            </section>
+
+            <!-- ===== NOTÍCIAS ===== -->
+            <section id="noticias" class="content-section">
+                <div class="section-header">
+                    <h2>Notícias</h2>
+                </div>
+                
+                <div class="news-container" id="newsContainer">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando notícias...</div>
+                </div>
+            </section>
+
+            <!-- ===== GALERIA ===== -->
+            <section id="galeria" class="content-section">
+                <div class="section-header">
+                    <h2>Galeria</h2>
+                </div>
+                
+                <div class="gallery-filters">
+                    <input type="search" id="gallerySearch" placeholder="Buscar fotos...">
+                </div>
+                
+                <div class="gallery-container" id="galleryContainer">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando galeria...</div>
+                </div>
+            </section>
+
+            <!-- ===== MEMBROS ===== -->
+            <section id="membros" class="content-section">
+                <div class="section-header">
+                    <h2>Membros</h2>
+                </div>
+                
+                <div class="membros-filters">
+                    <input type="search" id="membrosSearch" placeholder="Buscar membros...">
+                </div>
+                
+                <div class="membros-list" id="membrosList">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando membros...</div>
+                </div>
+            </section>
+
+            <!-- ===== NOTIFICAÇÕES ===== -->
+            <section id="notificacoes" class="content-section">
+                <div class="section-header">
+                    <h2>Notificações</h2>
+                </div>
+                
+                <div class="notificacoes-container" id="notificacoesContainer">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando notificações...</div>
+                </div>
+            </section>
+
+            <!-- ===== CONFIGURAÇÕES ===== -->
+            <section id="configuracoes" class="content-section">
+                <div class="section-header">
+                    <h2>Configurações</h2>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <h4>Preferências de Notificação</h4>
+                        <div class="settings-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                <span>Notificações de novos eventos</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                <span>Notificações de comentários</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h4>Segurança</h4>
+                        <div class="settings-group">
+                            <button class="btn btn-secondary" id="changePasswordBtn2">
+                                <i class="fas fa-key"></i> Alterar Senha
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Modal para Inscrição em Evento -->
+    <div class="modal" id="eventoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalEventoNome">-</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="modalEventoDescricao">-</p>
+                <div class="event-details">
+                    <p><strong>Data:</strong> <span id="modalEventoData">-</span></p>
+                    <p><strong>Local:</strong> <span id="modalEventoLocal">-</span></p>
+                    <p><strong>Campus:</strong> <span id="modalEventoCampus">-</span></p>
+                    <p><strong>Tipo:</strong> <span id="modalEventoTipo">-</span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="inscreverBtn">
+                    <i class="fas fa-user-plus"></i> Inscrever-me
+                </button>
+                <button class="btn btn-secondary modal-close-btn">Fechar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/membros.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

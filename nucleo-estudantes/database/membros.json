@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "codigo": "705231198",
+        "nome": "João Silva",
+        "email": "705231198@ucm.ac.mz",
+        "campus": "Maputo",
+        "curso": "Licenciatura em Informática",
+        "ano_estudo": "3º",
+        "ativo": true,
+        "perfil": "membro",
+        "data_inscricao": "2025-01-15"
+    },
+    {
+        "id": 2,
+        "codigo": "712345678",
+        "nome": "Maria Santos",
+        "email": "712345678@ucm.ac.mz",
+        "campus": "Maputo",
+        "curso": "Licenciatura em Engenharia Civil",
+        "ano_estudo": "2º",
+        "ativo": true,
+        "perfil": "membro",
+        "data_inscricao": "2025-02-10"
+    },
+    {
+        "id": 3,
+        "codigo": "708765432",
+        "nome": "Pedro Mendes",
+        "email": "708765432@ucm.ac.mz",
+        "campus": "Beira",
+        "curso": "Licenciatura em Administração",
+        "ano_estudo": "4º",
+        "ativo": true,
+        "perfil": "admin",
+        "data_inscricao": "2024-12-01"
+    },
+    {
+        "id": 4,
+        "codigo": "714567890",
+        "nome": "Ana Costa",
+        "email": "714567890@ucm.ac.mz",
+        "campus": "Nampula",
+        "curso": "Licenciatura em Contabilidade",
+        "ano_estudo": "3º",
+        "ativo": true,
+        "perfil": "membro",
+        "data_inscricao": "2025-03-05"
+    },
+    {
+        "id": 5,
+        "codigo": "709876543",
+        "nome": "Carlos Moreira",
+        "email": "709876543@ucm.ac.mz",
+        "campus": "Maputo",
+        "curso": "Licenciatura em Educação",
+        "ano_estudo": "1º",
+        "ativo": true,
+        "perfil": "membro",
+        "data_inscricao": "2025-08-20"
+    },
+    {
+        "id": 6,
+        "codigo": "715678901",
+        "nome": "Fatima Abdulahe",
+        "email": "715678901@ucm.ac.mz",
+        "campus": "Maputo",
+        "curso": "Licenciatura em Comunicação Social",
+        "ano_estudo": "2º",
+        "ativo": true,
+        "perfil": "membro",
+        "data_inscricao": "2025-05-12"
+    }
+]

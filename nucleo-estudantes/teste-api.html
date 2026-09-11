@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de API</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .email-list {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .email-item {
+            padding: 8px 0;
+            font-family: monospace;
+            cursor: pointer;
+            color: #667eea;
+            transition: color 0.3s;
+        }
+        .email-item:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        button.secondary {
+            background: #ccc;
+            color: #333;
+        }
+        button.secondary:hover {
+            background: #bbb;
+        }
+        .result {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .result.success {
+            background: #f0fdf4;
+            border-color: #22c55e;
+            color: #166534;
+        }
+        .result.error {
+            background: #fef2f2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .status.idle {
+            background: #e0e7ff;
+            color: #4f46e5;
+        }
+        .status.loading {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .status.success {
+            background: #f0fdf4;
+            color: #166534;
+        }
+        .status.error {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste de API Login</h1>
+        
+        <div class="status idle" id="status">Pronto para testar</div>
+        
+        <div class="section">
+            <div class="section-title">Emails Disponíveis</div>
+            <div class="email-list">
+                <div class="email-item" onclick="testarEmail('705231198@ucm.ac.mz')">
+                    → 705231198@ucm.ac.mz (João Silva - Membro)
+                </div>
+                <div class="email-item" onclick="testarEmail('704521456@ucm.ac.mz')">
+                    → 704521456@ucm.ac.mz (Maria Santos - Membro)
+                </div>
+                <div class="email-item" onclick="testarEmail('706789123@ucm.ac.mz')">
+                    → 706789123@ucm.ac.mz (Pedro Mendes - Admin)
+                </div>
+                <div class="email-item" onclick="testarEmail('708234567@ucm.ac.mz')">
+                    → 708234567@ucm.ac.mz (Ana Costa - Membro)
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Ações</div>
+            <button onclick="testarConexao()">🔍 Testar Conexão</button>
+            <button onclick="testarEmail('')" class="secondary">📧 Testar Form Login</button>
+            <button onclick="limparResultado()" class="secondary">🗑️ Limpar</button>
+        </div>
+        
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        const emails = [
+            '705231198@ucm.ac.mz',
+            '704521456@ucm.ac.mz',
+            '706789123@ucm.ac.mz',
+            '708234567@ucm.ac.mz'
+        ];
+
+        function updateStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status ' + type;
+        }
+
+        function showResult(data, type) {
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = '<div class="result ' + type + '">' + 
+                (typeof data === 'string' ? data : JSON.stringify(data, null, 2)) + 
+                '</div>';
+        }
+
+        function limparResultado() {
+            document.getElementById('resultado').innerHTML = '';
+            updateStatus('Pronto para testar', 'idle');
+        }
+
+        async function testarConexao() {
+            updateStatus('Testando conexão...', 'loading');
+            
+            try {
+                // Tentar determinar a URL base corramente
+                const baseUrl = window.location.pathname.split('/').slice(0, -1).join('/');
+                const apiUrl = `${baseUrl}/api/index.php`;
+                
+                console.log('Base URL:', baseUrl);
+                console.log('API URL completa:', window.location.origin + apiUrl);
+                
+                showResult(`Tentando conectar em:\n${window.location.origin}${apiUrl}`, 'error');
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        endpoint: 'test'
+                    })
+                });
+                
+                const text = await response.text();
+                
+                showResult(
+                    `✓ CONEXÃO ESTABELECIDA\n\n` +
+                    `Status: ${response.status}\n` +
+                    `Content-Type: ${response.headers.get('content-type')}\n\n` +
+                    `Response:\n${text}`,
+                    'success'
+                );
+                updateStatus('✓ Conexão OK!', 'success');
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                
+                showResult(
+                    `✗ ERRO NA CONEXÃO\n\n` +
+                    `Tipo: ${error.name}\n` +
+                    `Mensagem: ${error.message}\n\n` +
+                    `Possíveis causas:\n` +
+                    `1. Servidor web NÃO está rodando\n` +
+                    `2. URL do site está incorreta\n` +
+                    `3. Arquivo api/index.php não existe\n` +
+                    `4. Problema de permissões no servidor\n` +
+                    `5. Firewall bloqueando a conexão\n\n` +
+                    `Abra o console (F12) para mais detalhes.`,
+                    'error'
+                );
+                updateStatus('✗ Erro de conexão', 'error');
+            }
+        }
+
+        async function testarEmail(email) {
+            if (!email) {
+                email = prompt('Digite o email:');
+                if (!email) return;
+            }
+            
+            updateStatus(`Testando login com ${email}...`, 'loading');
+            
+            try {
+                const response = await fetch('api/index.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        endpoint: 'auth/login',
+                        email: email
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    showResult(data, 'success');
+                    updateStatus('✓ Login bem-sucedido!', 'success');
+                } else {
+                    showResult(data, 'error');
+                    updateStatus('✗ Login falhou', 'error');
+                }
+                
+            } catch (error) {
+                showResult(`ERRO: ${error.message}`, 'error');
+                updateStatus('✗ Erro na requisição', 'error');
+            }
+        }
+
+        // Testar conexão ao carregar
+        window.addEventListener('load', function() {
+            console.log('Página carregada. Testando conexão...');
+            setTimeout(testarConexao, 500);
+        });
+    </script>
+</body>
+</html>

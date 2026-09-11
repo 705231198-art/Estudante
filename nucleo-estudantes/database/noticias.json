@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "titulo": "Bem-vindo ao Portal de Membros",
+        "conteudo": "Bem-vindo ao novo portal de membros do Núcleo dos Estudantes UCM. Aqui você pode ver todos os eventos, notícias e gerir sua participação nas atividades.",
+        "categoria": "importante",
+        "data_criacao": "2026-02-22T10:00:00",
+        "visualizacoes": 145,
+        "autor_id": 1
+    },
+    {
+        "id": 2,
+        "titulo": "Seminário de Tecnologia 2026",
+        "conteudo": "O Núcleo convida todos os estudantes para o seminário de tecnologia que acontecerá no próximo mês. Serão abordados temas como inteligência artificial, desenvolvimento web e muito mais.",
+        "categoria": "eventos",
+        "data_criacao": "2026-02-20T14:30:00",
+        "visualizacoes": 89,
+        "autor_id": 1
+    },
+    {
+        "id": 3,
+        "titulo": "Inscrições abertas para novos membros",
+        "conteudo": "As inscrições para novos membros do Núcleo dos Estudantes estão abertas! Se você deseja fazer parte de uma comunidade vibrante de estudantes, clique em registrar-se.",
+        "categoria": "formularios",
+        "data_criacao": "2026-02-18T09:15:00",
+        "visualizacoes": 234,
+        "autor_id": 1
+    },
+    {
+        "id": 4,
+        "titulo": "Fotos do Encontro Cultural 2026",
+        "conteudo": "Confira as fotos do nosso encontro cultural que reuniu estudantes de vários campi. Momentos de diversão, aprendizado e integração!",
+        "categoria": "galeria",
+        "data_criacao": "2026-02-15T16:45:00",
+        "visualizacoes": 192,
+        "autor_id": 2
+    }
+]

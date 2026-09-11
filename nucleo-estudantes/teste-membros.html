@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Área de Membros</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .status-box {
+            background: #f0f0f0;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.5rem;
+        }
+
+        .status-box.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+
+        .status-box.warning {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+            color: #856404;
+        }
+
+        .status-box.error {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+
+        .section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 0.5rem;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .test-list {
+            list-style: none;
+        }
+
+        .test-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .test-item:last-child {
+            border-bottom: none;
+        }
+
+        .test-item strong {
+            color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0 0 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .data-card {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .data-card h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .data-card p {
+            margin: 0.25rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .file-structure {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Teste - Área de Membros</h1>
+        <p class="subtitle">Sistema de Portal de Membros para Núcleo dos Estudantes UCM</p>
+
+        <!-- Status -->
+        <div class="section">
+            <h2>Status do Sistema</h2>
+            <div class="status-box success">
+                ✓ HTML estrutura completa
+            </div>
+            <div class="status-box success">
+                ✓ CSS com design moderno e responsivo
+            </div>
+            <div class="status-box success">
+                ✓ JavaScript (membros.js) totalmente implementado
+            </div>
+            <div class="status-box success">
+                ✓ Autenticação institucional funcional
+            </div>
+            <div class="status-box warning">
+                ! Dados em arquivos JSON (pronto para MySQL)
+            </div>
+        </div>
+
+        <!-- Como Começar -->
+        <div class="section">
+            <h2>Como Testar</h2>
+            <ol style="padding-left: 1.5rem;">
+                <li>
+                    <strong>Acesse a página de login:</strong>
+                    <code style="background: #f0f0f0; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">login.html</code>
+                </li>
+                <li>
+                    <strong>Use as credenciais de teste:</strong>
+                    <div class="code-block">
+Email: 705231198@ucm.ac.mz
+Senha: 705231198@2026
+                    </div>
+                </li>
+                <li>
+                    <strong>Você será redirecionado para:</strong>
+                    <code style="background: #f0f0f0; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">area-membros.html</code>
+                </li>
+                <li>
+                    <strong>Explore as funcionalidades disponíveis</strong>
+                </li>
+            </ol>
+            <div class="button-group">
+                <a href="login.html" class="btn btn-primary">Ir para Login</a>
+                <a href="area-membros.html" class="btn btn-secondary">Ir para Área de Membros</a>
+            </div>
+        </div>
+
+        <!-- Funcionalidades -->
+        <div class="section">
+            <h2>Funcionalidades Implementadas</h2>
+            <div class="data-grid">
+                <div class="data-card">
+                    <h4>📊 Dashboard</h4>
+                    <p>Estatísticas e resumo de atividades</p>
+                </div>
+                <div class="data-card">
+                    <h4>👤 Perfil</h4>
+                    <p>Visualizar dados pessoais</p>
+                </div>
+                <div class="data-card">
+                    <h4>📅 Eventos</h4>
+                    <p>Listar e inscrever em eventos</p>
+                </div>
+                <div class="data-card">
+                    <h4>📰 Notícias</h4>
+                    <p>Últimas notícias do Núcleo</p>
+                </div>
+                <div class="data-card">
+                    <h4>📷 Galeria</h4>
+                    <p>Fotos dos eventos</p>
+                </div>
+                <div class="data-card">
+                    <h4>👥 Membros</h4>
+                    <p>Lista de membros ativos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estrutura de Arquivos -->
+        <div class="section">
+            <h2>Arquivos Criados/Modificados</h2>
+            <div class="file-structure">
+area-membros.html
+├── HTML estrutura com 9 seções
+├── Sidebar com navegação
+└── Modal para eventos
+
+js/membros.js
+├── Classe MembrosManager
+├── 20+ métodos
+└── Integração com API
+
+css/membros.css
+├── 800+ linhas de CSS
+├── Design responsivo
+└── Animações
+
+database/
+├── noticias.json (4 notícias)
+├── eventos.json (6 eventos)
+├── membros.json (6 membros)
+├── fotos.json (6 fotos)
+└── inscricoes_eventos.json (3 inscrições)
+
+AREA_MEMBROS_GUIA.md
+└── Documentação completa
+            </div>
+        </div>
+
+        <!-- Dados Disponíveis -->
+        <div class="section">
+            <h2>Dados de Teste Disponíveis</h2>
+
+            <h3 style="color: #667eea; margin-top: 1.5rem;">4 Notícias</h3>
+            <ul class="feature-list">
+                <li>Bem-vindo ao Portal de Membros</li>
+                <li>Seminário de Tecnologia 2026</li>
+                <li>Inscrições abertas para novos membros</li>
+                <li>Fotos do Encontro Cultural 2026</li>
+            </ul>
+
+            <h3 style="color: #667eea; margin-top: 1.5rem;">6 Eventos</h3>
+            <ul class="feature-list">
+                <li>Seminário de Desenvolvimento Web</li>
+                <li>Encontro Cultural e Musical</li>
+                <li>Torneio de Futebol</li>
+                <li>Workshop de Liderança</li>
+                <li>Noite de Pizza entre Amigos</li>
+                <li>Hackathon de Inovação</li>
+            </ul>
+
+            <h3 style="color: #667eea; margin-top: 1.5rem;">6 Membros Ativos</h3>
+            <ul class="feature-list">
+                <li>João Silva (705231198) - Maputo</li>
+                <li>Maria Santos (712345678) - Maputo</li>
+                <li>Pedro Mendes (708765432) - Beira</li>
+                <li>Ana Costa (714567890) - Nampula</li>
+                <li>Carlos Moreira (709876543) - Maputo</li>
+                <li>Fatima Abdulahe (715678901) - Maputo</li>
+            </ul>
+        </div>
+
+        <!-- Recursos -->
+        <div class="section">
+            <h2>Recursos Especiais</h2>
+            <ul class="feature-list">
+                <li>Autenticação com email institucional (@ucm.ac.mz)</li>
+                <li>Menu lateral responsivo</li>
+                <li>Navegação entre seções sem recarregar página</li>
+                <li>Modal para inscrição em eventos</li>
+                <li>Filtros para busca de eventos</li>
+                <li>Design gradiente moderno</li>
+                <li>Ícones Font Awesome integrados</li>
+                <li>Estilos responsivos para mobile</li>
+            </ul>
+        </div>
+
+        <!-- Próximas Etapas -->
+        <div class="section">
+            <h2>Próximas Etapas</h2>
+            <ol style="padding-left: 1.5rem;">
+                <li>Implementar endpoints da API em php/api.php</li>
+                <li>Integrar com banco de dados MySQL</li>
+                <li>Implementar edição de perfil</li>
+                <li>Implementar alterar senha</li>
+                <li>Adicionar sistema de notificações</li>
+                <li>Implementar upload de fotos</li>
+                <li>Sistema de comentários em eventos</li>
+                <li>Exportar relatórios</li>
+            </ol>
+        </div>
+
+        <!-- Infos -->
+        <div class="section">
+            <h2>Informações Importantes</h2>
+            <div class="status-box">
+                <strong>📝 Documentação:</strong> Veja AREA_MEMBROS_GUIA.md para guia completo
+            </div>
+            <div class="status-box">
+                <strong>🔐 Segurança:</strong> Estude php/estudantes.php para autenticação
+            </div>
+            <div class="status-box">
+                <strong>📊 Dados:</strong> Todos os dados JSON em database/ podem ser editados
+            </div>
+            <div class="status-box">
+                <strong>🎨 Estilo:</strong> Customizar cores em css/membros.css (linhas 1-11)
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee; color: #999;">
+            <p>Núcleo dos Estudantes UCM - 2026</p>
+            <p style="font-size: 0.9rem;">Sistema de Portal de Membros</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Eventos - Núcleo UCM</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logos/logo-ucm.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logos/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="images/logos/logo-ucm.png" alt="Logo UCM" class="logo">
+                    <div class="logo-text">
+                        <h1>Núcleo dos Estudantes</h1>
+                        <p>Universidade Católica de Moçambique</p>
+                    </div>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#atividades">Atividades</a></li>
+                    <li><a href="index.html#noticias">Notícias</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="calendario.html" class="active">Calendário</a></li>
+                    <li><a href="index.html#contactos">Contactos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Calendário -->
+    <section class="calendario-section">
+        <div class="container">
+            <h1 class="section-title">Calendário de Eventos</h1>
+            <p class="section-subtitle">Fique por dentro de todos os eventos do Núcleo</p>
+            
+            <div class="calendario-container">
+                <div class="calendario-sidebar">
+                    <!-- Filtros -->
+                    <div class="calendario-filtros">
+                        <h3><i class="fas fa-filter"></i> Filtrar Eventos</h3>
+                        <div class="filtro-options">
+                            <label class="filtro-option">
+                                <input type="checkbox" data-tipo="academico" checked>
+                                <span class="filtro-marker" style="background: #4CAF50;"></span>
+                                Acadêmicos
+                            </label>
+                            <label class="filtro-option">
+                                <input type="checkbox" data-tipo="cultural" checked>
+                                <span class="filtro-marker" style="background: #2196F3;"></span>
+                                Culturais
+                            </label>
+                            <label class="filtro-option">
+                                <input type="checkbox" data-tipo="desportivo" checked>
+                                <span class="filtro-marker" style="background: #FF9800;"></span>
+                                Desportivos
+                            </label>
+                            <label class="filtro-option">
+                                <input type="checkbox" data-tipo="social" checked>
+                                <span class="filtro-marker" style="background: #9C27B0;"></span>
+                                Sociais
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Próximos Eventos -->
+                    <div class="proximos-eventos">
+                        <h3><i class="fas fa-clock"></i> Próximos Eventos</h3>
+                        <div class="eventos-lista" id="proximosEventosList">
+                            <!-- Carregado via JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Exportar -->
+                    <div class="calendar-export">
+                        <h3><i class="fas fa-calendar-plus"></i> Exportar</h3>
+                        <p>Adicione nossos eventos ao seu calendário</p>
+                        <a href="#" class="btn btn-outline" id="exportGoogleCalendar">
+                            <i class="fab fa-google"></i> Google Calendar
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="calendario-main">
+                    <!-- Controles -->
+                    <div class="calendario-controls">
+                        <button id="prevMonth" class="cal-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h2 id="currentMonth">Carregando...</h2>
+                        <button id="nextMonth" class="cal-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button id="todayBtn" class="btn btn-outline">Hoje</button>
+                        <div class="view-options">
+                            <button class="view-btn active" data-view="month">Mês</button>
+                            <button class="view-btn" data-view="week">Semana</button>
+                            <button class="view-btn" data-view="day">Dia</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Calendário -->
+                    <div id="calendar"></div>
+                    
+                    <!-- Sugerir Evento -->
+                    <div class="add-event-container">
+                        <h3><i class="fas fa-plus-circle"></i> Sugerir Evento</h3>
+                        <form id="sugerirEventoForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="eventoTitulo" placeholder="Título do evento" required>
+                                </div>
+                                <div class="form-group">
+                                    <select id="eventoTipo" required>
+                                        <option value="">Tipo de evento</option>
+                                        <option value="academico">Acadêmico</option>
+                                        <option value="cultural">Cultural</option>
+                                        <option value="desportivo">Desportivo</option>
+                                        <option value="social">Social</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="date" id="eventoData" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="time" id="eventoHora">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea id="eventoDescricao" placeholder="Descrição do evento" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Sugerir Evento
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Detalhes -->
+    <div class="evento-modal" id="eventoModal">
+        <div class="evento-modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="evento-header">
+                <span class="evento-categoria" id="modalCategoria"></span>
+                <h2 id="modalTitulo"></h2>
+            </div>
+            
+            <div class="evento-info">
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <strong>Data:</strong>
+                        <span id="modalData"></span>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Horário:</strong>
+                        <span id="modalHorario"></span>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Local:</strong>
+                        <span id="modalLocal"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="evento-descricao">
+                <h3>Descrição</h3>
+                <p id="modalDescricao"></p>
+            </div>
+            
+            <div class="evento-actions">
+                <button class="btn btn-primary" id="inscreverBtn">
+                    <i class="fas fa-user-plus"></i> Inscrever-me
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Núcleo dos Estudantes UCM</h3>
+                    <p>Calendário oficial de eventos do núcleo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="galeria.html">Galeria</a></li>
+                        <li><a href="calendario.html">Calendário</a></li>
+                        <li><a href="index.html#contactos">Contactos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contactos</h3>
+                    <p>nucleo.estudantes@ucm.ac.mz</p>
+                    <p>+258 84 123 4567</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Núcleo dos Estudantes UCM</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/pt-br.js"></script>
+    <script src="js/calendario.js"></script>
+</body>
+</html>

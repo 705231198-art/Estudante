@@ -1,0 +1,46 @@
+{
+  "705231198": {
+    "codigo": "705231198",
+    "nome": "João Silva",
+    "email": "705231198@ucm.ac.mz",
+    "senha": "$2y$10$Zq1R8pLm7kJ3hG5dF2sX.eX5rT9uI2oQ4pK1bL8cM5nA3yZ7vW6q",
+    "campus": "Maputo",
+    "curso": "Licenciatura em Informática",
+    "ano": 3,
+    "ativo": true,
+    "perfil": "membro"
+  },
+  "704521456": {
+    "codigo": "704521456",
+    "nome": "Maria Santos",
+    "email": "704521456@ucm.ac.mz",
+    "senha": "$2y$10$Zq1R8pLm7kJ3hG5dF2sX.eX5rT9uI2oQ4pK1bL8cM5nA3yZ7vW6q",
+    "campus": "Beira",
+    "curso": "Licenciatura em Engenharia Civil",
+    "ano": 2,
+    "ativo": true,
+    "perfil": "membro"
+  },
+  "706789123": {
+    "codigo": "706789123",
+    "nome": "Pedro Mendes",
+    "email": "706789123@ucm.ac.mz",
+    "senha": "$2y$10$Zq1R8pLm7kJ3hG5dF2sX.eX5rT9uI2oQ4pK1bL8cM5nA3yZ7vW6q",
+    "campus": "Nampula",
+    "curso": "Licenciatura em Administração",
+    "ano": 4,
+    "ativo": true,
+    "perfil": "administrador"
+  },
+  "708234567": {
+    "codigo": "708234567",
+    "nome": "Ana Costa",
+    "email": "708234567@ucm.ac.mz",
+    "senha": "$2y$10$Zq1R8pLm7kJ3hG5dF2sX.eX5rT9uI2oQ4pK1bL8cM5nA3yZ7vW6q",
+    "campus": "Maputo",
+    "curso": "Licenciatura em Contabilidade",
+    "ano": 1,
+    "ativo": true,
+    "perfil": "membro"
+  }
+}

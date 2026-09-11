@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "evento_id": 1,
+        "evento_nome": "Seminário de Desenvolvimento Web",
+        "evento_data": "2026-03-05T10:00:00",
+        "evento_local": "Sala de Conferências A",
+        "evento_descricao": "Aprenda as melhores práticas em desenvolvimento web moderno",
+        "estudante_codigo": "705231198",
+        "data_inscricao": "2026-02-22T10:30:00",
+        "status": "confirmado"
+    },
+    {
+        "id": 2,
+        "evento_id": 2,
+        "evento_nome": "Encontro Cultural e Musical",
+        "evento_data": "2026-03-10T18:00:00",
+        "evento_local": "Auditório Principal",
+        "evento_descricao": "Noite de música ao vivo, dança e comida tradicional",
+        "estudante_codigo": "705231198",
+        "data_inscricao": "2026-02-21T14:15:00",
+        "status": "confirmado"
+    },
+    {
+        "id": 3,
+        "evento_id": 5,
+        "evento_nome": "Noite de Pizza entre Amigos",
+        "evento_data": "2026-03-12T19:00:00",
+        "evento_local": "Centro Estudantil",
+        "evento_descricao": "Uma noite casual para os membros se conhecerem",
+        "estudante_codigo": "705231198",
+        "data_inscricao": "2026-02-19T11:00:00",
+        "status": "pendente"
+    }
+]

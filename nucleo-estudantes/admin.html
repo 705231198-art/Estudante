@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Núcleo UCM</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logos/logo-ucm.png">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-user-shield"></i> Painel Admin</h2>
+                <p>Núcleo dos Estudantes UCM</p>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="active">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#noticias">
+                    <i class="fas fa-newspaper"></i> Notícias
+                </a>
+                <a href="#eventos">
+                    <i class="fas fa-calendar-alt"></i> Eventos
+                </a>
+                <a href="#galeria">
+                    <i class="fas fa-images"></i> Galeria
+                </a>
+                <a href="#membros">
+                    <i class="fas fa-users"></i> Membros
+                </a>
+                <a href="#mensagens">
+                    <i class="fas fa-envelope"></i> Mensagens
+                    <span class="badge">3</span>
+                </a>
+                <a href="#configuracoes">
+                    <i class="fas fa-cog"></i> Configurações
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <span id="adminName">Administrador</span>
+                        <small>admin@ucm.ac.mz</small>
+                    </div>
+                </div>
+                <button id="logoutBtn" class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard -->
+            <section id="dashboard" class="content-section active">
+                <div class="dashboard-header">
+                    <h1>Dashboard</h1>
+                    <div class="dashboard-actions">
+                        <button class="btn btn-primary" id="refreshBtn">
+                            <i class="fas fa-sync-alt"></i> Atualizar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #4CAF50;">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,245</h3>
+                            <p>Visitas Hoje</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #2196F3;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24</h3>
+                            <p>Novas Mensagens</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #FF9800;">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>156</h3>
+                            <p>Membros Ativos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #9C27B0;">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Eventos este Mês</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Ações Rápidas</h2>
+                    <div class="actions-grid">
+                        <button class="action-btn" data-action="add-news">
+                            <i class="fas fa-plus-circle"></i>
+                            Nova Notícia
+                        </button>
+                        <button class="action-btn" data-action="add-event">
+                            <i class="fas fa-calendar-plus"></i>
+                            Novo Evento
+                        </button>
+                        <button class="action-btn" data-action="upload-photo">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Upload de Fotos
+                        </button>
+                        <button class="action-btn" data-action="view-messages">
+                            <i class="fas fa-comments"></i>
+                            Ver Mensagens
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h2>Atividade Recente</h2>
+                    <div class="activity-list" id="activityList">
+                        <!-- Atividades carregadas via JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notícias Manager -->
+            <section id="noticias" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-newspaper"></i> Gerenciar Notícias</h2>
+                    <button class="btn btn-primary" id="addNoticiaBtn">
+                        <i class="fas fa-plus"></i> Nova Notícia
+                    </button>
+                </div>
+
+                <div class="editor-container" id="noticiaEditor">
+                    <h3>Editor de Notícia</h3>
+                    <div class="form-group">
+                        <input type="text" id="noticiaTitulo" placeholder="Título da notícia">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="noticiaConteudo" placeholder="Conteúdo da notícia" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="noticiaImagem" placeholder="URL da imagem">
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn-secondary" id="cancelNoticiaBtn">Cancelar</button>
+                        <button class="btn-primary" id="saveNoticiaBtn">Publicar</button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="noticiasList">
+                            <!-- Notícias carregadas via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Outras seções... -->
+        </main>
+    </div>
+    
+    <script src="js/admin.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

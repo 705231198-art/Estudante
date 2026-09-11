@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Fotos - Núcleo UCM</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/galeria.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logos/logo-ucm.png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="images/logos/logo-ucm.png" alt="Logo UCM" class="logo">
+                    <div class="logo-text">
+                        <h1>Núcleo dos Estudantes</h1>
+                        <p>Universidade Católica de Moçambique</p>
+                    </div>
+                </div>
+                
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#atividades">Atividades</a></li>
+                    <li><a href="index.html#noticias">Notícias</a></li>
+                    <li><a href="galeria.html" class="active">Galeria</a></li>
+                    <li><a href="calendario.html">Calendário</a></li>
+                    <li><a href="index.html#contactos">Contactos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Galeria Principal -->
+    <section class="galeria-section">
+        <div class="container">
+            <h1 class="section-title">Galeria de Fotos</h1>
+            <p class="section-subtitle">Memórias dos nossos eventos e atividades</p>
+            
+            <!-- Filtros -->
+            <div class="filtro-categorias">
+                <button class="filtro-btn active" data-categoria="todos">Todas</button>
+                <button class="filtro-btn" data-categoria="eventos">Eventos</button>
+                <button class="filtro-btn" data-categoria="culturais">Culturais</button>
+                <button class="filtro-btn" data-categoria="desportivos">Desportivos</button>
+                <button class="filtro-btn" data-categoria="academicos">Acadêmicos</button>
+                <button class="filtro-btn" data-categoria="social">Social</button>
+            </div>
+            
+            <!-- Grid de Fotos -->
+            <div class="galeria-grid" id="galeriaGrid">
+                <!-- Fotos carregadas via JavaScript -->
+            </div>
+            
+            <!-- Carregar Mais -->
+            <div class="text-center" id="carregarMaisContainer">
+                <button class="btn btn-outline" id="carregarMaisBtn">
+                    <i class="fas fa-plus"></i> Carregar Mais Fotos
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <div class="lightbox-image-container">
+                <img id="lightboxImage" src="" alt="">
+            </div>
+            
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDescription"></p>
+                <div class="lightbox-meta">
+                    <span id="lightboxDate"></span>
+                    <span id="lightboxCategoria"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Núcleo dos Estudantes UCM</h3>
+                    <p>A voz dos estudantes da Universidade Católica de Moçambique.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="index.html#sobre">Sobre</a></li>
+                        <li><a href="galeria.html">Galeria</a></li>
+                        <li><a href="calendario.html">Calendário</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contactos</h3>
+                    <p>nucleo.estudantes@ucm.ac.mz</p>
+                    <p>+258 84 123 4567</p>
+                    <p>Maputo, Moçambique</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Núcleo dos Estudantes UCM</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/galeria.js"></script>
+</body>
+</html>

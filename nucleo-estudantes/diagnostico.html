@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico do Sistema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .diagnostic-item {
+            background: #f9f9f9;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+        .diagnostic-item.ok {
+            border-left-color: #22c55e;
+            background: #f0fdf4;
+        }
+        .diagnostic-item.error {
+            border-left-color: #ef4444;
+            background: #fef2f2;
+        }
+        .diagnostic-item.warning {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+        .diagnostic-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .diagnostic-title i {
+            font-size: 18px;
+        }
+        .diagnostic-content {
+            font-size: 13px;
+            color: #666;
+            font-family: monospace;
+        }
+        .diagnostic-content code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 10px 0;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        .url-box {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-family: monospace;
+            word-break: break-all;
+            font-size: 12px;
+        }
+        .status-icon {
+            font-size: 20px;
+        }
+        .ok .status-icon { color: #22c55e; }
+        .error .status-icon { color: #ef4444; }
+        .warning .status-icon { color: #f59e0b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-stethoscope"></i> Diagnóstico do Sistema</h1>
+        
+        <div id="diagnostics"></div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <button onclick="executarDiagnostico()"><i class="fas fa-redo"></i> Executar Diagnóstico</button>
+        </div>
+    </div>
+
+    <script>
+        const diagnostics = [];
+
+        function addDiagnostic(title, status, details, icon) {
+            diagnostics.push({ title, status, details, icon });
+        }
+
+        function renderDiagnostics() {
+            const container = document.getElementById('diagnostics');
+            container.innerHTML = diagnostics.map((d, i) => `
+                <div class="diagnostic-item ${d.status}">
+                    <div class="diagnostic-title">
+                        <span class="status-icon">${d.icon}</span>
+                        <span>${d.title}</span>
+                    </div>
+                    <div class="diagnostic-content">${d.details}</div>
+                </div>
+            `).join('');
+        }
+
+        async function executarDiagnostico() {
+            diagnostics.length = 0;
+            
+            // 1. Verificar URL atual
+            addDiagnostic(
+                'Localização Atual',
+                'ok',
+                `<strong>URL:</strong> <code>${window.location.href}</code><br>` +
+                `<strong>Protocolo:</strong> <code>${window.location.protocol}</code><br>` +
+                `<strong>Host:</strong> <code>${window.location.host}</code><br>` +
+                `<strong>Pathname:</strong> <code>${window.location.pathname}</code>`,
+                '📍'
+            );
+            
+            // 2. Calcular URL da API
+            const baseUrl = window.location.pathname.split('/').slice(0, -1).join('/');
+            const apiUrl = `${baseUrl}/api/index.php`;
+            const fullApiUrl = window.location.origin + apiUrl;
+            
+            addDiagnostic(
+                'URL Calculada da API',
+                'info',
+                `<strong>Base:</strong> <code>${baseUrl}</code><br>` +
+                `<strong>Endpoint:</strong> <code>/api/index.php</code><br>` +
+                `<div class="url-box">${fullApiUrl}</div>`,
+                '🔗'
+            );
+            
+            // 3. Testar arquivos locais
+            const filesToCheck = [
+                { path: 'login.html', name: 'Login' },
+                { path: 'area-membros.html', name: 'Área de Membros' },
+                { path: 'js/auth.js', name: 'Script de Autenticação' },
+                { path: 'css/auth.css', name: 'CSS de Autenticação' },
+                { path: 'database/estudantes.json', name: 'Banco de Dados' }
+            ];
+            
+            for (const file of filesToCheck) {
+                try {
+                    const response = await fetch(file.path);
+                    if (response.ok) {
+                        addDiagnostic(
+                            `Arquivo: ${file.name}`,
+                            'ok',
+                            `Arquivo encontrado em <code>/${file.path}</code>`,
+                            '✓'
+                        );
+                    } else {
+                        addDiagnostic(
+                            `Arquivo: ${file.name}`,
+                            'error',
+                            `Arquivo não encontrado: <code>/${file.path}</code> (Status: ${response.status})`,
+                            '✗'
+                        );
+                    }
+                } catch (error) {
+                    addDiagnostic(
+                        `Arquivo: ${file.name}`,
+                        'error',
+                        `Erro ao acessar <code>/${file.path}</code><br>Erro: ${error.message}`,
+                        '✗'
+                    );
+                }
+            }
+            
+            // 4. Testar conexão com API
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ endpoint: 'test' })
+                });
+                
+                const text = await response.text();
+                
+                if (response.ok) {
+                    addDiagnostic(
+                        'Conexão com API',
+                        'ok',
+                        `Servidor respondeu com status ${response.status}<br>` +
+                        `Content-Type: ${response.headers.get('content-type')}<br>` +
+                        `Resposta: ${text.substring(0, 100)}...`,
+                        '✓'
+                    );
+                } else {
+                    addDiagnostic(
+                        'Conexão com API',
+                        'warning',
+                        `Servidor respondeu com status ${response.status}<br>` +
+                        `Resposta: ${text.substring(0, 100)}`,
+                        '⚠'
+                    );
+                }
+            } catch (error) {
+                addDiagnostic(
+                    'Conexão com API',
+                    'error',
+                    `Erro ao conectar: ${error.message}<br>` +
+                    `URL tentada: <code>${fullApiUrl}</code><br><br>` +
+                    `<strong>Causas possíveis:</strong><br>` +
+                    `• Servidor web não está rodando<br>` +
+                    `• Arquivo api/index.php não existe<br>` +
+                    `• Problema de permissões<br>` +
+                    `• Error no arquivo PHP`,
+                    '✗'
+                );
+            }
+            
+            // 5. Testar login
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        endpoint: 'auth/login',
+                        email: '705231198@ucm.ac.mz'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    addDiagnostic(
+                        'Teste de Login',
+                        'ok',
+                        `Login bem-sucedido com email de teste<br>` +
+                        `Status: ${response.status}<br>` +
+                        `Estudante: ${data.estudante.nome}`,
+                        '✓'
+                    );
+                } else {
+                    addDiagnostic(
+                        'Teste de Login',
+                        'warning',
+                        `Erro: ${data.error || 'Desconhecido'}<br>` +
+                        `Status: ${response.status}`,
+                        '⚠'
+                    );
+                }
+            } catch (error) {
+                addDiagnostic(
+                    'Teste de Login',
+                    'error',
+                    `Erro ao fazer login de teste: ${error.message}`,
+                    '✗'
+                );
+            }
+            
+            // 6. Verificar localStorage
+            addDiagnostic(
+                'Armazenamento Local',
+                'ok',
+                `localStorage disponível: ${typeof(Storage) !== 'undefined' ? 'Sim' : 'Não'}<br>` +
+                `sessionStorage disponível: ${typeof(sessionStorage) !== 'undefined' ? 'Sim' : 'Não'}<br>` +
+                `Itens salvos: ${Object.keys(localStorage).length}`,
+                '💾'
+            );
+            
+            renderDiagnostics();
+        }
+
+        // Executar ao carregar
+        window.addEventListener('load', executarDiagnostico);
+    </script>
+</body>
+</html>

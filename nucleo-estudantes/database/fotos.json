@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "descricao": "Momento do seminário de tecnologia",
+        "caminho_arquivo": "images/placeholders/photo1.jpg",
+        "album": "Seminário Tecnologia 2026",
+        "evento_id": 1,
+        "data_upload": "2026-02-20T15:30:00"
+    },
+    {
+        "id": 2,
+        "descricao": "Apresentação sobre web design",
+        "caminho_arquivo": "images/placeholders/photo2.jpg",
+        "album": "Seminário Tecnologia 2026",
+        "evento_id": 1,
+        "data_upload": "2026-02-20T15:45:00"
+    },
+    {
+        "id": 3,
+        "descricao": "Banda ao vivo no encontro cultural",
+        "caminho_arquivo": "images/placeholders/photo3.jpg",
+        "album": "Encontro Cultural 2026",
+        "evento_id": 2,
+        "data_upload": "2026-02-18T20:00:00"
+    },
+    {
+        "id": 4,
+        "descricao": "Dança tradicional moçambicana",
+        "caminho_arquivo": "images/placeholders/photo4.jpg",
+        "album": "Encontro Cultural 2026",
+        "evento_id": 2,
+        "data_upload": "2026-02-18T20:30:00"
+    },
+    {
+        "id": 5,
+        "descricao": "Comida tradicional no evento",
+        "caminho_arquivo": "images/placeholders/photo5.jpg",
+        "album": "Encontro Cultural 2026",
+        "evento_id": 2,
+        "data_upload": "2026-02-18T21:00:00"
+    },
+    {
+        "id": 6,
+        "descricao": "Participantes do workshop de liderança",
+        "caminho_arquivo": "images/placeholders/photo6.jpg",
+        "album": "Workshop Liderança 2026",
+        "evento_id": 4,
+        "data_upload": "2026-02-15T16:00:00"
+    }
+]
