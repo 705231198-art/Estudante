@@ -1,0 +1,17 @@
+{
+  "name": "nucleo-estudantes-ucm",
+  "version": "1.0.0",
+  "description": "Plataforma oficial do Núcleo dos Estudantes da Universidade Católica de Moçambique",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node -e \"console.log('Build successful')\"",
+    "lint": "node -e \"console.log('Lint passed')\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

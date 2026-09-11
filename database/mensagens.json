@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "nome": "Teste",
+    "email": "teste@ucm.ac.mz",
+    "assunto": "Mensagem do Site",
+    "mensagem": "Ola",
+    "data": "2026-09-11T20:17:37.622Z",
+    "lida": false
+  }
+]

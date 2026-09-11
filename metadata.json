@@ -1,0 +1,6 @@
+{
+  "name": "Núcleo dos Estudantes - UCM",
+  "description": "Plataforma oficial do Núcleo dos Estudantes da Universidade Católica de Moçambique",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
